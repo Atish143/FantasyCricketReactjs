@@ -6,20 +6,23 @@ import Bowler from "../../components/Bowler/Bowler";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Pickedplayer from "../Pickedplayer/Pickedplayer";
 
 export default function Pickplayer({}) {
   const [selectedPlayer, setSelectedPlayer] = useState([]);
   const [countPlayer, setCountPlayer] = useState(11);
   const [countCredit, setCountCredit] = useState(100);
   const [error, setError] = useState(true);
-
+  const [showplayerlist, setShowplayerlist] = useState(false);
+  console.log("checking ", showplayerlist);
   useEffect(() => {
     console.log("wfwuhfuwhfuwhufw selectedPlayer", selectedPlayer.length);
-    if (selectedPlayer.length > 11 || selectedPlayer.length < 11) {
+    if (selectedPlayer.length === 11) {
       console.log("cajkakjajkanckjanckjancjancank");
       setError(false);
     } else {
       setError(true);
+      console.log("habhsbjchbsjhbscjhbshcbsjbsjcbsjcbsbcsbcj",error);
     }
   }, [selectedPlayer]);
 
@@ -30,18 +33,23 @@ export default function Pickplayer({}) {
         0
       );
       setCountCredit(100 - asd);
-      setError(true);
-    } else if (countCredit < 0) {
-      console.log("iyersfgil", countCredit);
-      setError(false);
-    } else {
-      setError(true);
-    }
+    } 
+
   }, [selectedPlayer]);
+
+
+ useEffect(()=>{
+  if(countCredit<=0){
+    setError(true)
+  }
+  else{
+    setError(false)
+  }
+ },[countCredit])
 
   return (
     <>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", display: showplayerlist ? "none" : null }}>
         <div
           style={{
             width: "70%",
@@ -152,20 +160,19 @@ export default function Pickplayer({}) {
         </div>
 
         <div style={{ width: "100%", textAlign: "center" }}>
-          {error ? (
-            <Link to="/pickedplayer"  OnClick={(e) => e.preventDefault()}>
-              <Button variant="outlined" style={{ width: "30%", margin: "5%" }}>
-                Proceed
-              </Button>
-            </Link>
-          ) : (
-            <Link to="/pickedplayer">
-              <Button variant="outlined" style={{ width: "30%", margin: "5%" }}>
-                Proceed
-              </Button>
-            </Link>
-          )}
+          {/* {
+          showplayerlist ? 
+        
+        : null
+         }  */}
         </div>
+      </div>
+
+      <div style={{width:"100%"}}>
+      {showplayerlist ? <Pickedplayer selectedPlayer={selectedPlayer} /> : null}
+        <Button disabled={error} style={{width:"100%" , marginTop:"5%" , marginBottom:"5%", display:"flex"  , justifyContent:"center"}} onClick={() => setShowplayerlist(!showplayerlist)}>
+        Proceed to see player list
+      </Button>
       </div>
     </>
   );
