@@ -28,7 +28,7 @@ tr:nth-child(even) {
             </style>
 
             <tr>
-              <th colSpan="4">PLayer List Table</th>
+              <th colSpan="5">PLayer List Table</th>
             </tr>
             <tr>
               <th>Sr No</th>
