@@ -34,6 +34,7 @@ tr:nth-child(even) {
               <th>Sr No</th>
               <th>Player Name</th>
               <th>player Team Name</th>
+              <th>Player Role</th>
               <th>Player Credit Score</th>
             </tr>
 
@@ -46,6 +47,7 @@ tr:nth-child(even) {
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
                     <td>{item.team_name}</td>
+                    <td>{item.role}</td>
                     <td>{item.event_player_credit}</td>
                   </tr>
               
