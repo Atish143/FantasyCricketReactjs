@@ -34,14 +34,7 @@ export default function Bowler({
   }, []);
 
   useEffect(() => {
-    if (
-      selectedPlayer.filter((data) => data?.role === "Bowler").length >= 3 &&
-      selectedPlayer.filter((data) => data?.role === "Bowler").length <= 7
-    ) {
-      setError(false);
-    } else {
-      setError(true);
-    }
+    
   }, [selectedPlayer]);
 
   console.log("playerdata", player);

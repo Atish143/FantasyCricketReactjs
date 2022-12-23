@@ -13,16 +13,17 @@ export default function Pickplayer({}) {
   const [countPlayer, setCountPlayer] = useState(11);
   const [countCredit, setCountCredit] = useState(100);
   const [error, setError] = useState(true);
+  const [errorinfo,setErrorinfo] = useState([{"type":"All-Rounder","value":true},{"type":"Batsman","value":true},{"type":"Bowler","value":true},{"type":"Wicket-Keeper","value":true}])
   const [showplayerlist, setShowplayerlist] = useState(false);
   console.log("checking ", showplayerlist);
   useEffect(() => {
-    console.log("wfwuhfuwhfuwhufw selectedPlayer", selectedPlayer.length);
+    console.log("wfwuhfuwhfuwhufw selectedPlayer", selectedPlayer);
     if (selectedPlayer.length === 11) {
       console.log("cajkakjajkanckjanckjancjancank");
       setError(false);
     } else {
       setError(true);
-      console.log("habhsbjchbsjhbscjhbshcbsjbsjcbsjcbsbcsbcj",error);
+      console.log("habhsbjchbsjhbscjhbshcbsjbsjcbsjcbsbcsbcj", error);
     }
   }, [selectedPlayer]);
 
@@ -32,20 +33,32 @@ export default function Pickplayer({}) {
         (sum, curr) => sum + curr.event_player_credit,
         0
       );
+      console.log("hhjhdshd",asd);
       setCountCredit(100 - asd);
-    } 
-
+    }
+    else{
+      setCountCredit(100)
+    }
+    
   }, [selectedPlayer]);
 
 
- useEffect(()=>{
-  if(countCredit<=0){
-    setError(true)
-  }
-  else{
-    setError(false)
-  }
- },[countCredit])
+  useEffect(() => {
+    const bowlers = selectedPlayer.filter(s => s.role === "Bowler")
+    const allRounder = selectedPlayer.filter(s => s.role === "All-Rounder")
+    const wicketKeeper = selectedPlayer.filter(s => s.role === "Wicket-Keeper")
+    const batsman = selectedPlayer.filter(s => s.role === "Batsman")
+    console.log("selectedPlayer", selectedPlayer)
+    if (selectedPlayer.length === 11 && (batsman.length >= 3 || batsman.length <=7 ) &&  (bowlers.length >= 3 || bowlers.length <=7 ) && (wicketKeeper.length >= 1 || wicketKeeper.length <=5 ) && (allRounder.length <= 4) && (countCredit >= 0)){
+      console.log("countCredit", countCredit >= 0)
+      setError(false)
+    }else {
+      setError(true)
+    }
+  }, [selectedPlayer, countCredit])
+  
+
+ 
 
   return (
     <>
@@ -168,11 +181,23 @@ export default function Pickplayer({}) {
         </div>
       </div>
 
-      <div style={{width:"100%"}}>
-      {showplayerlist ? <Pickedplayer selectedPlayer={selectedPlayer} /> : null}
-        <Button disabled={error} style={{width:"100%" , marginTop:"5%" , marginBottom:"5%", display:"flex"  , justifyContent:"center"}} onClick={() => setShowplayerlist(!showplayerlist)}>
-        Proceed to see player list
-      </Button>
+      <div style={{ width: "100%" }}>
+        {showplayerlist ? (
+          <Pickedplayer selectedPlayer={selectedPlayer} />
+        ) : null}
+        <Button
+          disabled={error}
+          style={{
+            width: "100%",
+            marginTop: "5%",
+            marginBottom: "5%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          onClick={() => setShowplayerlist(!showplayerlist)}
+        >
+          Proceed to see player list
+        </Button>
       </div>
     </>
   );

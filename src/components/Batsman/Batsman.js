@@ -34,16 +34,7 @@ export default function Batsman({
   }, []);
 
   useEffect(() => {
-    if (
-      selectedPlayer.filter((data) => data?.role === "Batsman").length >= 3 &&
-      selectedPlayer.filter((data) => data?.role === "Batsman").length <= 7
-    ) {
-      console.log("hajcb-Batsman");
-      setError(false);
-    } else {
-      console.log("hajcb-Batsman error");
-      setError(true);
-    }
+   
   }, [selectedPlayer]);
 
   console.log("playerdata", selectedPlayer);

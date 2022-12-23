@@ -37,15 +37,7 @@ export default function WicketKeeper({
   }, []);
 
   useEffect(() => {
-    if (
-      selectedPlayer.filter((data) => data?.role === "Wicket-Keeper").length >=
-        1 &&
-      selectedPlayer.filter((data) => data?.role === "Wicket-Keeper").length <= 5
-    ) {
-      setError(false);
-    } else {
-      setError(true);
-    }
+    
   }, [selectedPlayer]);
 
   console.log("playerdata", player);
