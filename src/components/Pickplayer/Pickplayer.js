@@ -13,7 +13,7 @@ export default function Pickplayer({}) {
   const [countPlayer, setCountPlayer] = useState(11);
   const [countCredit, setCountCredit] = useState(100);
   const [error, setError] = useState(true);
-  const [errorinfo,setErrorinfo] = useState([{"type":"All-Rounder","value":true},{"type":"Batsman","value":true},{"type":"Bowler","value":true},{"type":"Wicket-Keeper","value":true}])
+  
   const [showplayerlist, setShowplayerlist] = useState(false);
   console.log("checking ", showplayerlist);
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Pickplayer({}) {
     const wicketKeeper = selectedPlayer.filter(s => s.role === "Wicket-Keeper")
     const batsman = selectedPlayer.filter(s => s.role === "Batsman")
     console.log("selectedPlayer", selectedPlayer)
-    if (selectedPlayer.length === 11 && (batsman.length >= 3 || batsman.length <=7 ) &&  (bowlers.length >= 3 || bowlers.length <=7 ) && (wicketKeeper.length >= 1 || wicketKeeper.length <=5 ) && (allRounder.length <= 4) && (countCredit >= 0)){
+    if (selectedPlayer.length === 11 && (batsman.length >= 3 && batsman.length <=7 ) &&  (bowlers.length >= 3 && bowlers.length <=7 ) && (wicketKeeper.length >= 1 && wicketKeeper.length <=5 ) && (allRounder.length <= 4) && (countCredit >= 0)){
       console.log("countCredit", countCredit >= 0)
       setError(false)
     }else {

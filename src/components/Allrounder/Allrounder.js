@@ -33,16 +33,7 @@ export default function Allrounder({
   }, []);
 
 
-  useEffect(()=>{
-    if(selectedPlayer.filter((data)=> data?.role === "All-Rounder").length >= 0 && selectedPlayer.filter((data)=> data?.role === "All-Rounder").length <= 4){
-        console.log("sjncsnkcjsjkcnjsk All-Rounder",selectedPlayer.filter((data)=> data?.role === "All-Rounder").length);
-        setError(false)
-    }else{
-        console.log("sjncsnkcjsjkcnjsk------error",selectedPlayer.filter((data)=> data?.role === "All-Rounder").length);
-        setError(true)
-        
-    }
-  },[selectedPlayer])
+  
 
  
 
