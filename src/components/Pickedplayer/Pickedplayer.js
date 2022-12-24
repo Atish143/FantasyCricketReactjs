@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function Pickedplayer({selectedPlayer}){
-  console.log(selectedPlayer,"lkjhgfdsaASDFG")
+  
     return(
         <>
         <div style={{width:"100%"}}>

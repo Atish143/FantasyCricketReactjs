@@ -7,8 +7,6 @@ import { useState, useEffect } from "react";
 export default function Allrounder({
     selectedPlayer,
     setSelectedPlayer,
-  error,
-  setError
 }) {
   const [player, setPlayer] = useState([]);
 
